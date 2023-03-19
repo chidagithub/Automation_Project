@@ -12,25 +12,16 @@ pipeline{
     choice(name: 'ENVIRONMENT', choices: ['Dev','QA', 'Prod'])
     booleanParam(name: 'TEST_CASES', defaultValue: false)
    }
-   triggers{
-    cron('H */4 * * *')
-    pollSCM('H */4 * * *')
-   }
    stages{
-    stage('Build and Push'){
+    stage('First Stage'){
         steps{
             sh "echo Hello"
         }
     }
-    stage('Deploy Stage'){
+    stage('Second Stage'){
         steps{
             sh "sleep 10"
         }
     }
-   }
-   post{
-    always{
-        echo "Always Run"
-    }
-  }
+  }
 }
